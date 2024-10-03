@@ -1,9 +1,9 @@
 <?php
 /**
- * @var $mysqli
+ * @var $pdo
  */
 
-$user = checkUser($mysqli);
+$user = checkUser($pdo);
 
 $articleId = $_GET['id'] ?? NULL;
 
@@ -13,11 +13,9 @@ if(!$articleId)
     die();
 }
 
-$result = $mysqli->query("SELECT * FROM articles WHERE id =" . $articleId);
-$article = $result->fetch_assoc();
 
-//var_dump($article);
-//exit();
+$article = getArticle($pdo,$articleId);
+
 
 if(!$article)
 {
@@ -27,5 +25,6 @@ if(!$article)
 
 @unlink($_SERVER['DOCUMENT_ROOT'] . '/Blog/images/' . $article['img']);
 
-$mysqli->query("DELETE FROM articles WHERE id='".$articleId."' AND user_id=".$user['id']);
+$result = $pdo->prepare("DELETE FROM articles WHERE id=? AND user_id=?");
+$result->execute([$articleId,$user['id']]);
 header("Location: ?act=getUserArticles");

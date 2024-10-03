@@ -1,12 +1,18 @@
 <?php
 
 /**
- * @var $mysqli
+ * @var $pdo
  */
-$id = (int)$_GET['id'];
 
-$result = $mysqli->query("SELECT * FROM articles WHERE id =" . $id);
-$article = $result->fetch_assoc();
+require_once 'functions/helpers.php';
+
+$userId = $_SESSION['userId'];
+$articleId = (int)$_GET['id'];
+
+
+$article = getArticle($pdo,$articleId);
+
+
 
 
 require_once 'templates/view.php';

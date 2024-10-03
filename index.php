@@ -8,13 +8,13 @@ require_once 'functions/helpers.php';
 require_once 'config.php';
 
 
-$mysqli = new mysqli(
-    DB_HOST,
-    DB_USERNAME,
-    DB_PASSWORD,
-    DB_NAME,
-    DB_PORT
-);
+$dsn = "mysql:host=". DB_HOST .";dbname=". DB_NAME .";charset=utf8";
+$opt = [
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    PDO::ATTR_EMULATE_PREPARES => false,
+];
+$pdo = new PDO($dsn, DB_USERNAME, DB_PASSWORD, $opt);
 
 
 if(isset($_GET['act']))
@@ -57,13 +57,14 @@ if(isset($_GET['act']))
 
 $user = null;
 
-$userId = intval($_SESSION['userId'] ?? null);
+$userId = (int)$_SESSION['userId'] ?? null;
 
 if($userId) {
-    $result = $mysqli->query("SELECT * FROM users WHERE id='" . $userId . "' LIMIT 1");
-    $user = $result->fetch_assoc();
+    $result = $pdo->prepare("SELECT * FROM users WHERE id= ? LIMIT 1");
+    $result->execute([$userId]);
+    $user = $result->fetch();
 }
 
-$resultUserArticles = $mysqli->query(query: "SELECT * FROM articles ORDER BY id DESC LIMIT 9");
+$resultUserArticles = $pdo->query(query: "SELECT * FROM articles ORDER BY id DESC LIMIT 9");
 require_once 'templates/index.php';
 die();

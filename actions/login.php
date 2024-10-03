@@ -1,16 +1,18 @@
 <?php
 /**
- * @var $mysqli ...
+ * @var $pdo ...
  */
+/** @var TYPE_NAME $error */
 $error ='';
 if(count($_POST) > 0)
 {
 
-    $email = $_POST['email'] ?? null;
-    $password = $_POST['password'] ?? null;
+    $email = strip_tags($_POST['email'] ?? null);
+    $password = strip_tags($_POST['password'] ?? null);
 
-    $result = $mysqli->query("SELECT * FROM users WHERE email='". $email ."'");
-    $user = $result->fetch_assoc();
+    $result = $pdo->prepare("SELECT * FROM users WHERE email=?");
+    $result->execute([$email]);
+    $user = $result->fetch();
     if(empty($user))
     {
         $error = 'Пользователя с таким Email не существует';
@@ -24,10 +26,10 @@ if(count($_POST) > 0)
         header('Location: /Blog/?act=profile');
         die();
     } else {
-        $error = 'Cant Fund';
+        $error = "Can't Fund";
     }
 
 }
 
-require_once 'templates/login.php';
+require_once "templates/login.php";
 die();

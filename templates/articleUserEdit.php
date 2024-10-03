@@ -25,7 +25,7 @@
                 </a>
             </p>
 
-            <form class="space-y-6" method="POST">
+            <form class="space-y-6" method="POST" role="form" enctype="multipart/form-data" action="">
                 <input name="articleUserEdit" type="hidden" name="act" value="articleUserEdit" />
                 <div>
                     <label for="new-password" class="block text-sm font-medium text-gray-700">Title</label>
@@ -40,6 +40,13 @@
                     <div class="mt-1">
                         <textarea name="content" autocomplete="content" required
                                   class="px-2 py-3 mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"><?=$userArticle['content']?> </textarea>
+                    </div>
+                </div>
+                <div>
+                    <label for="file" class="block text-sm font-medium text-gray-700">File</label>
+                    <div class="mt-1">
+                        <input name="file" type="file" id ="file"
+                               class="px-2 py-3 mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm" />
                     </div>
                 </div>
                 <div>

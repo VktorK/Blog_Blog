@@ -1,18 +1,19 @@
 <?php
 /**
- * @var $mysqli
+ * @var $pdo
  */
 
-$user = checkUser($mysqli);
+$user = checkUser($pdo);
 
 if(count($_POST))
 {
-    $_POST['login'] ? $login = $_POST['login'] : $user['login'];
-    $_POST['name'] ? $name = $_POST['name'] : $user['name'];
-    $_POST['surname'] ? $surname = $_POST['surname'] : $user['surname'];
-    $_POST['about'] ? $about = $_POST['about'] : $user['about'];
-    $_POST['phone'] ? $phone = $_POST['phone'] : $user['phone'];
-    $mysqli->query("UPDATE users SET login='". $login ."',name='". $name ."',surname='". $surname ."',about='". $about ."',phone='". $phone ."' WHERE id=" . $user['id']);
+    $_POST['login'] ?  $login = strip_tags($_POST['login']) : $user['login'];
+    $_POST['name'] ? $name = strip_tags($_POST['name']) : $user['name'];
+    $_POST['surname'] ? $surname = strip_tags($_POST['surname']) : $user['surname'];
+    $_POST['about'] ? $about = strip_tags($_POST['about']) : $user['about'];
+    $_POST['phone'] ? $phone = strip_tags($_POST['phone']) : $user['phone'];
+    $result = $pdo->prepare("UPDATE users SET login=?,name=?,surname=?,about=?,phone=? WHERE id=?");
+    $result->execute([$login,$name,$surname,$about,$phone,$user['id']]);
     header('Location: ?act=profile');
     die();
 }

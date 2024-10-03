@@ -41,7 +41,7 @@
             <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Delete</th>
         </tr>
         </thead>
-        <tbody class="bg-white" <?php while($row = $resultUserArticles->fetch_assoc()):?> >
+        <tbody class="bg-white" <?php while($row = $resultUserArticles->fetch()):?> >
         <tr>
             <td class="py-4 px-6 border-b border-gray-200"><?=$row['id']?></td>
             <td class="py-4 px-6 border-b border-gray-200"><img src="/Blog/images/<?=$row['img']?>" alt="some picher"/></td>
@@ -55,7 +55,7 @@
             </td>
         </tr>
         <?php endwhile ?>
-        <?php if($resultUserArticles->num_rows == 0): ?>
+        <?php if(!$resultUserArticles->rowCount()): ?>
         <tr>
             <td colspan="5" align="center">
                 Not found
