@@ -9,19 +9,13 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<?php if(isset($user) && $user['isAdmin'] == 1): ?>
 <div>
-    <a href="/Blog/?act=indexAdmin">Back</a>
+    <a href="?act=indexAdmin">Back</a>
 </div>
-<?php else : ?>
+<?php if($article['user_id'] === $user): ?>
     <div>
-        <a href="/Blog">Back</a>
+        <a href="/Blog/?act=articleUserEdit&id=<?= $article['id']?>">Edit</a>
     </div>
-<?php endif; ?>
-<?php if($article['user_id'] === $user['id'] || $user['isAdmin']): ?>
-<div>
-    <a href="/Blog/?act=articleUserEdit&id=<?= $article['id']?>">Edit</a>
-</div>
 <?php endif ?>
 <div class="bg-gray-100 flex h-screen items-center justify-center px-4 sm:px-6 lg:px-8">
     <h3><?= $article['title'] . PHP_EOL ?></h3>

@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Edit Article</title>
+    <title>Edit Admin Article</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,11 +16,11 @@
             <img class="mx-auto h-12 w-auto" src="https://www.svgrepo.com/show/499664/user-happy.svg" alt="" />
 
             <h2 class="my-3 text-center text-3xl font-bold tracking-tight text-gray-900">
-                Edit Article
+                Edit Admin Article
             </h2>
             <p class="mt-2 text-center text-sm text-gray-600 max-w">
                 Or
-                <a href="?act=getUserArticle" class="font-medium text-blue-600 hover:text-blue-500">
+                <a href="?act=indexAdmin" class="font-medium text-blue-600 hover:text-blue-500">
                     Back to Articles
                 </a>
             </p>
@@ -30,7 +30,7 @@
                 <div>
                     <label for="new-password" class="block text-sm font-medium text-gray-700">Title</label>
                     <div class="mt-1">
-                        <input name="title" type="text" value="<?=$userArticle['title']?>" required
+                        <input name="title" type="text" value="<?= $userArticle['title'] ?>" required
                                class="px-2 py-3 mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm" />
                     </div>
                 </div>

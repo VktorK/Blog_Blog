@@ -1,9 +1,13 @@
-<?php if($user): ?>
+
+<?php if(isset($user['id'])): ?>
 <div class="text-gray-500 order-3 w-full md:w-auto md:order-2">
     <ul class="flex font-semibold justify-between">
-        <!-- Active Link = text-indigo-500
-        Inactive Link = hover:text-indigo-500 -->
-        <li class="md:px-4 md:py-2 hover:text-indigo-400"><a href="/Blog">Main Page</a></li>
+        <?php if($user['isAdmin'] == 1) : ?>
+            <li class="md:px-4 md:py-2 hover:text-indigo-400"><a href="/Blog/?act=indexAdmin">Admin Page</a></li>
+        <?php else: ?>
+            <li class="md:px-4 md:py-2 hover:text-indigo-400"><a href="/Blog">Main Page</a></li>
+        <?php endif; ?>
+
         <li class="md:px-4 md:py-2 hover:text-indigo-400"><a href="?act=getUserArticles">User Articles</a></li>
         <li class="md:px-4 md:py-2 hover:text-indigo-400"><a href="?act=addArticle">Add Article</a></li>
         <li class="md:px-4 md:py-2 hover:text-indigo-400"><a href="?act=profile">Profile</a></li>

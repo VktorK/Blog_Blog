@@ -20,7 +20,7 @@ if(count($_POST)) {
 
         $result = $pdo->prepare("INSERT INTO articles SET img =?,  title=?,content=?,user_id=?, createdAt = NOW()");
         $result->execute([$filename,$title,$content,$user['id']]);
-        header('Location: ?act=getUserArticles');
+        redirect('?act=getUserArticles');
     }
 
     die();

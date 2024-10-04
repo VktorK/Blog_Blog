@@ -1,5 +1,7 @@
 <?php
 
+use JetBrains\PhpStorm\NoReturn;
+
 
 /**
  * @param $pdo
@@ -9,8 +11,7 @@ function checkUser($pdo): array
 {
     if(empty($_SESSION['userId']))
     {
-        header('Location:?act=login');
-        die();
+        redirect('?act=login');
     }
 
     $userId = (int)$_SESSION['userId'];
@@ -39,6 +40,13 @@ function getArticle($pdo, int $articleId): mixed
     return $result->fetch();
 }
 
+function getAdminArticles($pdo): mixed
+{
+    $result = $pdo->prepare("SELECT * FROM articles ");
+    $result->execute();
+    return $result->fetch();
+}
+
 /**
  * @param $pdo
  * @param int $articleId
@@ -49,6 +57,13 @@ function getUserArticle($pdo, int $articleId, int $userId): mixed
 {
     $resulUserArticle = $pdo->prepare("SELECT * FROM articles WHERE id=? AND user_id=?");
     $resulUserArticle->execute([$articleId,$userId]);
+    return $resulUserArticle->fetch();
+}
+
+function getAdminArticle($pdo, int $articleId)
+{
+    $resulUserArticle = $pdo->prepare("SELECT * FROM articles WHERE id=?");
+    $resulUserArticle->execute([$articleId]);
     return $resulUserArticle->fetch();
 }
 
@@ -101,4 +116,10 @@ function upload(int $userId): string
             break;
     }
     return $filename;
+}
+
+#[NoReturn] function redirect(string $uri): void
+{
+    header("Location: " . $uri);
+    die();
 }

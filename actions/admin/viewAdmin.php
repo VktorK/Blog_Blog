@@ -8,10 +8,12 @@ require_once 'functions/helpers.php';
 
 $user = checkUser($pdo);
 
+
+$userAdmin = $user['isAdmin'];
 $articleId = (int)$_GET['id'];
 
 
-$article = getArticle($pdo,$articleId);
+$article = getAdminArticles($pdo);
 
 
 

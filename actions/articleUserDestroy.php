@@ -19,12 +19,11 @@ $article = getArticle($pdo,$articleId);
 
 if(!$article)
 {
-    header("Location: /?act=articles");
-    die();
+    redirect('/?act=articles');
 }
 
 @unlink($_SERVER['DOCUMENT_ROOT'] . '/Blog/images/' . $article['img']);
 
 $result = $pdo->prepare("DELETE FROM articles WHERE id=? AND user_id=?");
 $result->execute([$articleId,$user['id']]);
-header("Location: ?act=getUserArticles");
+redirect('?act=getUserArticles');

@@ -14,8 +14,7 @@ if(count($_POST))
     $_POST['phone'] ? $phone = strip_tags($_POST['phone']) : $user['phone'];
     $result = $pdo->prepare("UPDATE users SET login=?,name=?,surname=?,about=?,phone=? WHERE id=?");
     $result->execute([$login,$name,$surname,$about,$phone,$user['id']]);
-    header('Location: ?act=profile');
-    die();
+    redirect('?act=profile');
 }
 
 require_once 'templates/profileUpdate.php';

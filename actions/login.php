@@ -16,15 +16,13 @@ if(count($_POST) > 0)
     if(empty($user))
     {
         $error = 'Пользователя с таким Email не существует';
-        header('Location: ?act=login');
-        die();
+        redirect('?act=login');
     }
 
     if(password_verify($password, $user['password']))
     {
         $_SESSION['userId'] = $user['id'];
-        header('Location: /Blog/?act=profile');
-        die();
+        redirect('/Blog/?act=profile');
     } else {
         $error = "Can't Fund";
     }
