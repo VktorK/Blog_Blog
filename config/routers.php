@@ -1,6 +1,7 @@
 <?php
 $routers = [
     'register' => 'actions/register.php',
+    'index' => 'index.php',
     'login' => 'actions/login.php',
     'profile' => 'actions/profile.php',
     'profileUpdate' => 'actions/profileUpdate.php',
@@ -13,5 +14,6 @@ $routers = [
     'indexAdmin' => 'actions/admin/indexAdmin.php',
     'viewAdmin' => 'actions/admin/viewAdmin.php',
     'articleAdminEdit' => 'actions/admin/articleAdminEdit.php',
-
+    'getAllUserArticlesToAdmin' => 'actions/admin/getAllUserArticlesToAdmin.php',
+    'articleUserDestroyAdmin' => 'actions/admin/articleUserDestroyAdmin.php'
 ];

@@ -8,7 +8,11 @@
             <li class="md:px-4 md:py-2 hover:text-indigo-400"><a href="/Blog">Main Page</a></li>
         <?php endif; ?>
 
-        <li class="md:px-4 md:py-2 hover:text-indigo-400"><a href="?act=getUserArticles">User Articles</a></li>
+        <?php if($user['isAdmin'] == 1) : ?>
+            <li class="md:px-4 md:py-2 hover:text-indigo-400"><a href="/Blog/?act=getAllUserArticlesToAdmin">User Admin Articles</a></li>
+        <?php else: ?>
+            <li class="md:px-4 md:py-2 hover:text-indigo-400"><a href="?act=getUserArticles">User Articles</a></li>
+        <?php endif; ?>
         <li class="md:px-4 md:py-2 hover:text-indigo-400"><a href="?act=addArticle">Add Article</a></li>
         <li class="md:px-4 md:py-2 hover:text-indigo-400"><a href="?act=profile">Profile</a></li>
         <div class="order-2 md:order-3">

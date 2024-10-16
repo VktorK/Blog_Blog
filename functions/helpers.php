@@ -28,6 +28,26 @@ function checkUser($pdo): array
     return $user;
 }
 
+function getUser($pdo)
+{
+    $userId = (int)($_SESSION['userId'] ?? NULL);
+
+    if(!$userId)
+    {
+        return [];
+    }
+
+    $result = $pdo->prepare("SELECT * FROM users WHERE id=? LIMIT 1");
+    $result->execute([$userId]);
+    $user = $result->fetch();
+
+    if(!$user)
+    {
+        return [];
+    }
+    return $user;
+}
+
 /**
  * @param $pdo
  * @param int $articleId

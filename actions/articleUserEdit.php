@@ -18,7 +18,7 @@ if(count($_POST) > 0) {
     if ($_FILES['file']['size'] != 0) {
         $filename = upload($user['id']);
         $img = $filename;
-//        @unlink($_SERVER['DOCUMENT_ROOT'] . '/Blog/images/' . $userArticle['img']);
+        @unlink($_SERVER['DOCUMENT_ROOT'] . '/Blog/images/' . $userArticle['img']);
 
     }
     $_POST['title'] ? $title = strip_tags($_POST['title']) : $userArticle['title'];

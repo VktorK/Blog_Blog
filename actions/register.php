@@ -12,7 +12,7 @@ if(count($_POST) > 0) {
 
     if (!empty($email) && ($password === $password2)) {
         $password = password_hash($password, PASSWORD_DEFAULT);
-        $result = $pdo->prepare("INSERT INTO users set login=?,email =?, password =?" );
+        $result = $pdo->prepare("INSERT INTO users set login=?,email =?, password =?, isAdmin=0" );
         $result->execute([$login,$email,$password]);
     } else {
         redirect('?act=register');

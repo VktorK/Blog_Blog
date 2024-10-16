@@ -9,7 +9,7 @@ require_once 'config/config.php';
 require_once 'config/routers.php';
 
 
-$dsn = "mysql:host=". DB_HOST .";dbname=". DB_NAME .";charset=utf8";
+$dsn = "mysql:host=". DB_HOST .";port=". DB_PORT .";dbname=". DB_NAME .";charset=utf8";
 $opt = [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
@@ -27,7 +27,7 @@ if(isset($_REQUEST['act']))
 $resultUserArticles = $pdo->query(query: "SELECT * FROM articles ORDER BY id DESC LIMIT 9");
 $user = null;
 
-$userId = (int)$_SESSION['userId'] ?? null;
+$userId = (int)($_SESSION['userId'] ?? null);
 
 if($userId) {
     $result = $pdo->prepare("SELECT * FROM users WHERE id= ? LIMIT 1");
