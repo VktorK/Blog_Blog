@@ -7,13 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>User Articles</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
 <nav class="bg-gray-200 shadow shadow-gray-300 w-100 px-8 md:px-auto">
     <div class="md:h-16 h-28 mx-auto md:px-4 container flex items-center justify-between flex-wrap md:flex-nowrap">
-        <!-- Logo -->
+
         <div class="text-indigo-500 md:order-1">
-            <!-- Heroicon - Chip Outline -->
+
             <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24"
                  stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -63,8 +64,16 @@
         </tr>
         <?php endif?>
         </tbody>
-
     </table>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <?php for ($i = 1; $i <= $pages; $i++): ?>
+                <li class="page-item"><a class="page-link" href="/Blog/?act=getUserArticles&page=<?=$i?>"><?=$i?></a></li>
+            <?php endfor ?>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+    </nav>
 </div>
 </body>
 </html>

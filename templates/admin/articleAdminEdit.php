@@ -1,63 +1,121 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Edit Admin Article</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-<div class="bg-gray-100 flex h-screen items-center justify-center px-4 sm:px-6 lg:px-8">
-    <div class="w-full max-w-md space-y-8">
-        <div class="bg-white shadow-md rounded-md p-6">
-
-            <img class="mx-auto h-12 w-auto" src="https://www.svgrepo.com/show/499664/user-happy.svg" alt="" />
-
-            <h2 class="my-3 text-center text-3xl font-bold tracking-tight text-gray-900">
-                Edit Admin Article
-            </h2>
-            <p class="mt-2 text-center text-sm text-gray-600 max-w">
-                Or
-                <a href="?act=indexAdmin" class="font-medium text-blue-600 hover:text-blue-500">
-                    Back to Articles
-                </a>
-            </p>
-
-            <form class="space-y-6" method="POST" role="form" enctype="multipart/form-data" action="">
-                <input name="articleUserEdit" type="hidden" name="act" value="articleUserEdit" />
-                <div>
-                    <label for="new-password" class="block text-sm font-medium text-gray-700">Title</label>
-                    <div class="mt-1">
-                        <input name="title" type="text" value="<?= $userArticle['title'] ?>" required
-                               class="px-2 py-3 mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm" />
+<?php include_once $_SERVER['DOCUMENT_ROOT'] . '/Blog/templates/admin/header.php'; ?>
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+        <div class="album py-5 bg-light">
+            <div class="container">
+                <form class="form-horizontal" role="form" enctype='multipart/form-data' method="POST" action="">
+                    <input type="hidden" name="act" value="articleAdminEdit"/>
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6">
+                            <h2>Add new article</h2>
+                            <hr>
+                        </div>
                     </div>
-                </div>
-
-                <div>
-                    <label for="password" class="block text-sm font-medium text-gray-700">Content</label>
-                    <div class="mt-1">
-                        <textarea name="content" autocomplete="content" required
-                                  class="px-2 py-3 mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"><?=$userArticle['content']?> </textarea>
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6">
+                            <div class="form-group has-danger">
+                                <label class="sr-only" for="email">Title</label>
+                                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                    <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
+                                    <input type="text" name="title" class="form-control" id="email"
+                                           placeholder="Title" value="<?=$userArticle['title']?>" required autofocus>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <i class="fa fa-close"></i> Example error message
+                        </span>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <label for="file" class="block text-sm font-medium text-gray-700">File</label>
-                    <div class="mt-1">
-                        <input name="file" type="file" id ="file"
-                               class="px-2 py-3 mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm" />
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6">
+                            <div class="form-group has-danger">
+                                <label class="sr-only" for="email">Category</label>
+                                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                    <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
+                                    <select name="categoryId" class="form-control">
+                                        <option value="0">-- category --</option>
+                                        <?php while ($row = $categories->fetch()): ?>
+                                            <option value="<?=$row['id']?>" <?php if ($userArticle['categoryId'] == $row['id']): ?>selected<?php endif ?>><?=$row['name']?></option>
+                                        <?php endwhile ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <i class="fa fa-close"></i> Example error message
+                        </span>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <button type="submit"
-                            class="flex w-full justify-center rounded-md border border-transparent bg-sky-400 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2">
-                        Edit Article
-                    </button>
-                </div>
-            </form>
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6">
+                            <div class="form-group has-danger">
+                                <label class="sr-only" for="text">Text</label>
+                                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                    <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
+                                    <textarea name="content" class="form-control" id="text"
+                                              placeholder="Text" required autofocus rows="15"><?=$userArticle['content']?></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <i class="fa fa-close"></i> Example error message
+                        </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6">
+                            <div class="form-group has-danger">
+                                <label class="sr-only" for="file">File</label>
+                                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                    <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
+                                    <input type="file" id="file" name="file"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <i class="fa fa-close"></i>
+                        </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6">
+                            <div class="form-group has-danger">
+                                <label class="sr-only" for="email">Published</label>
+                                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                    <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
+                                    Published <input type="checkbox" name="isPublished" value="1" <?php if ($userArticle['isPublished']): ?>checked<?php endif ?>/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                        </div>
+                    </div>
+                    <div class="row" style="padding-top: 1rem">
+                        <div class="col-md-6"></div>
+                        <div class="col-md-3 text-right">
+                            <button type="submit" class="btn btn-success"><i class="fa fa-sign-in"></i> Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
-</div>
-</body>
-</html>
+    </main>
+<?php include_once $_SERVER['DOCUMENT_ROOT'] . '/Blog/templates/admin/footer.php'; ?>

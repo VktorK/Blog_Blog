@@ -11,7 +11,7 @@ function checkUser($pdo): array
 {
     if(empty($_SESSION['userId']))
     {
-        redirect('?act=login');
+        redirect('/Blog/?act=login');
     }
 
     $userId = (int)$_SESSION['userId'];
@@ -22,11 +22,20 @@ function checkUser($pdo): array
 
     if(!$user)
     {
-        header('Location:?act=login');
-        die();
+        redirect('/Blog/?act=login');
     }
     return $user;
 }
+
+function isAdminUser($pdo): array
+{
+    $user = checkUser($pdo);
+    if($user['isAdmin'] != 1) {
+      redirect('/Blog/?act=login');
+    }
+    return $user;
+}
+
 
 function getUser($pdo)
 {

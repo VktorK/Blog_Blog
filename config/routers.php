@@ -13,7 +13,5 @@ $routers = [
     'view' => 'actions/view.php',
     'indexAdmin' => 'actions/admin/indexAdmin.php',
     'viewAdmin' => 'actions/admin/viewAdmin.php',
-    'articleAdminEdit' => 'actions/admin/articleAdminEdit.php',
-    'getAllUserArticlesToAdmin' => 'actions/admin/getAllUserArticlesToAdmin.php',
-    'articleUserDestroyAdmin' => 'actions/admin/articleUserDestroyAdmin.php'
+
 ];

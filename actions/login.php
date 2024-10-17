@@ -22,7 +22,12 @@ if(count($_POST) > 0)
     if(password_verify($password, $user['password']))
     {
         $_SESSION['userId'] = $user['id'];
-        redirect('/Blog/?act=profile');
+        if($user['isAdmin'] == 1)
+        {
+            redirect('/Blog/admin');
+        } else {
+            redirect('/Blog/?act=profile');
+        }
     } else {
         $error = "Can't Fund";
     }
