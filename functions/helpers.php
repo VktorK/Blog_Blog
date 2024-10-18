@@ -1,8 +1,34 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+function sendEmail(string $subject, string $body): void
+{
+    $mail = new PHPMailer(true);
 
-use JetBrains\PhpStorm\NoReturn;
+    try {
+        $mail->isSMTP();
+        $mail->Host = 'ssl://smtp.mail.ru';
+        $mail->SMTPAuth = true;
+        $mail->Username = '4you.19885@mail.ru';
+        $mail->Password = '5TnehULbT0dgdtkK1qz2';
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+        $mail->CharSet = "UTF-8";
+        $mail->Port = 465;
 
+        $mail->setFrom('4you.19885@mail.ru');
+        $mail->addAddress('up2you@inbox.ru');
 
+        $mail->isHTML();
+        $mail->Subject = $subject;
+        $mail->Body = $body;
+        $mail->AltBody = strip_tags($body);
+
+        $mail->send();
+    } catch (Exception) {
+        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        die();
+    }
+}
 /**
  * @param $pdo
  * @return array

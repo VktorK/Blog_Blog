@@ -2,25 +2,30 @@
 /**
  * @var $pdo
  */
-require_once 'templates/addArticle.php';
+
 $user = checkUser($pdo);
 
-$error = '';
-if(count($_POST)) {
-    $title = strip_tags($_POST['title'] ?? NULL);
-    $content = strip_tags($_POST['content']?? NULL);
-    if ($_FILES['file']['size'] === 0) {
-        $error = 'Файл не загружен';
-    }
-    elseif(!$title || !$content){
-        $error = 'Some Error';
-    } else {
 
+$error = '';
+if(count($_POST) > 0) {
+    $title = strip_tags($_POST['title'] ?? NULL);
+
+    $content = strip_tags($_POST['content']?? NULL);
+    $filename = '';
+
+
+    if (!$_FILES['file']['size']) {
+        $error = 'Image not found';
+    } elseif (!$title || !$content) {
+        $error = 'Content is not found';
+    } else {
         $filename = upload($user['id']);
 
-        $result = $pdo->prepare("INSERT INTO articles SET img =?,  title=?,content=?,user_id=?, createdAt = NOW()");
-        $result->execute([$filename,$title,$content,$user['id']]);
-        redirect('?act=getUserArticles');
+        $stmt = $pdo->prepare("INSERT INTO articles SET img = ?, userId = ?, title = ?, content = ?, createdAt = NOW()");
+        $stmt->execute([$filename, $user['id'], $title, $content]);
+        redirect('/Blog/?act=getUserArticles');
     }
-    die();
+
 }
+require_once 'templates/addArticle.php';
+die();

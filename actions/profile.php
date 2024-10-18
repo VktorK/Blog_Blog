@@ -3,10 +3,16 @@
  * @var $pdo
  */
 
+$userId= (int)($_SESSION['userId'] ?? null);
 
-$result = $pdo->prepare("SELECT * FROM users WHERE id=?");
-$result->execute([$_SESSION['userId']]);
-$user = $result->fetch();
 
-require_once 'templates/profile.php';
+
+$user = $pdo->prepare("SELECT * FROM users WHERE id=?");
+$user->execute([$userId]);
+$user  = $user->fetch();
+
+
+
+
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Blog/templates/profile.php';
 die();

@@ -37,6 +37,7 @@
                 <?php endwhile ?>
                 </tbody>
             </table>
+            <?php if($row > 0):?>
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
                     <li class="page-item"><a class="page-link" href="/Blog/admin/?page=<?=$previous?>">Previous</a></li>
@@ -46,6 +47,7 @@
                     <li class="page-item"><a class="page-link" href="/Blog/admin/?page=<?=$next?>">Next</a></li>
                 </ul>
             </nav>
+            <?php endif ?>
         </div>
     </main>
 <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/Blog/templates/admin/footer.php'; ?>

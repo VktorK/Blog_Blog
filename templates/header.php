@@ -13,7 +13,7 @@
         <?php else: ?>
             <li class="md:px-4 md:py-2 hover:text-indigo-400"><a href="?act=getUserArticles">User Articles</a></li>
         <?php endif; ?>
-        <li class="md:px-4 md:py-2 hover:text-indigo-400"><a href="?act=addArticle">Add Article</a></li>
+        <li class="md:px-4 md:py-2 hover:text-indigo-400"><a href="/Blog/?act=addArticle">Add Article</a></li>
         <li class="md:px-4 md:py-2 hover:text-indigo-400"><a href="?act=profile">Profile</a></li>
         <div class="order-2 md:order-3">
             <button class="px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-gray-50 rounded-xl flex items-center gap-2">

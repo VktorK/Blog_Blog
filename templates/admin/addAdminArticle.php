@@ -26,7 +26,7 @@
             </p>
 
             <form class="space-y-6" method="POST" role="form" enctype="multipart/form-data" action="">
-                <input type="hidden" name="act" value="addArticle" />
+                <input type="hidden" name="act" value="addAdminArticle" />
                 <div>
                     <label for="new-password" class="block text-sm font-medium text-gray-700">Title</label>
                     <div class="mt-1">
@@ -44,9 +44,12 @@
                 <div>
                     <label for="password" class="block text-sm font-medium text-gray-700">Category</label>
                     <div class="mt-1">
-                       <select>
-                           <option value=""></option>
-                       </select>
+                        <select name="categoryId" class="form-control">
+                            <option value="0">-- category --</option>
+                            <?php while ($row = $categories->fetch()): ?>
+                                <option value="<?=$row['id']?>"><?=$row['name']?></option>
+                            <?php endwhile ?>
+                        </select>
                     </div>
                 </div>
                 <div>

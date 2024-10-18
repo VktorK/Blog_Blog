@@ -14,10 +14,13 @@ if(count($_POST) > 0) {
         $password = password_hash($password, PASSWORD_DEFAULT);
         $result = $pdo->prepare("INSERT INTO users set login=?,email =?, password =?, isAdmin=0" );
         $result->execute([$login,$email,$password]);
+
+        sendEmail('Регистрация прошла успешно', 'Поздравляем, регистрация прошла успешно');
+
+        redirect('?act=login');
     } else {
         redirect('?act=register');
     }
-    redirect('?act=login');
 }
 
 require_once 'templates/register.php';

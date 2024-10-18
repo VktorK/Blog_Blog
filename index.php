@@ -8,6 +8,10 @@ require_once 'functions/helpers.php';
 require_once 'config/config.php';
 require_once 'config/routers.php';
 
+require_once 'lib/PHPMailer/src/Exception.php';
+require_once 'lib/PHPMailer/src/PHPMailer.php';
+require_once 'lib/PHPMailer/src/SMTP.php';
+
 
 $dsn = "mysql:host=" . DB_HOST . ";port=" . DB_PORT . ";dbname=" . DB_NAME . ";charset=utf8";
 $opt = [

@@ -47,7 +47,7 @@
             <td class="py-4 px-6 border-b border-gray-200"><?=$row['id']?></td>
             <td class="py-4 px-6 border-b border-gray-200"><img src="/Blog/images/<?=$row['img']?>" alt="some picher"/></td>
             <td class="py-4 px-6 border-b border-gray-200"><?=$row['title']?></td>
-            <td class="py-4 px-6 border-b border-gray-200 truncate"><?=$row['createdAt']?></td>
+            <td class="py-4 px-6 border-b border-gray-200 truncate"><?=$row['created_at']?></td>
             <td class="py-4 px-6 border-b border-gray-200">
                 <a href="?act=articleUserEdit&id=<?= $row['id']?>" class="bg-green-500 text-white py-1 px-2 rounded-full text-xs">Edit</a>
             </td>
@@ -65,6 +65,7 @@
         <?php endif?>
         </tbody>
     </table>
+    <?php if($row > 0):?>
     <nav aria-label="Page navigation example">
         <ul class="pagination">
             <li class="page-item"><a class="page-link" href="#">Previous</a></li>
@@ -74,6 +75,7 @@
             <li class="page-item"><a class="page-link" href="#">Next</a></li>
         </ul>
     </nav>
+    <?php endif ?>
 </div>
 </body>
 </html>

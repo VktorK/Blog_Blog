@@ -11,8 +11,7 @@ $userArticle = getAdminArticle($pdo,$articleId);
 
 $categories = $pdo->prepare("SELECT * FROM categories ORDER BY name");
 $categories->execute();
-//var_dump($userArticle);
-//exit();
+
 
 
 
