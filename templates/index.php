@@ -44,7 +44,7 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
                                 <a href="?act=view&id=<?= $row['id']?>"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
-                                <?php if($user && $row['user_id'] == $user['id']): ?>
+                                <?php if($user && $row['userId'] == $user['id']): ?>
                                     <a href ="?act=articleUserEdit&id=<?= $row['id']?>"><button type="button" class="btn btn-sm btn-outline-secondary">Edit</button></a>
                                 <?php endif ?>
                             </div>

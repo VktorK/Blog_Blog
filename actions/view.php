@@ -14,8 +14,9 @@ $key = "news-"  . $articleId;
 
 if(!isset($_COOKIE[$key]) || !$_COOKIE[$key])
 {
-    setcookie($key, 1, time() + 86500, "/");
     updateViews($pdo,$articleId);
+    setcookie($key, 1, time() + 86500, "/");
+
 }
 
 
