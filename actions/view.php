@@ -13,7 +13,6 @@ $resultComments = $pdo->prepare("SELECT u.*, c.* FROM comments c left join users
 $resultComments->execute([$articleId,1]);
 
 
-$userId = (int)($user['id'] ?? null);
 $user = getUser($pdo);
 
 $userId = !empty($user['id']) ? $user['id'] : 0;
