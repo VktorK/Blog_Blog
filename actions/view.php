@@ -9,6 +9,16 @@ require_once 'functions/helpers.php';
 $articleId = (int)($_GET['id'] ?? null);
 
 $article = getArticle($pdo,$articleId);
+
+$key = "news-"  . $articleId;
+
+if(!isset($_COOKIE[$key]) || !$_COOKIE[$key])
+{
+    setcookie($key, 1, time() + 86500, "/");
+    updateViews($pdo,$articleId);
+}
+
+
 $resultComments = $pdo->prepare("SELECT u.*, c.* FROM comments c left join users u on c.userId = u.id WHERE c.articleId =? AND c.isActive=?");
 $resultComments->execute([$articleId,1]);
 

@@ -95,6 +95,13 @@ function getArticle($pdo, int $articleId): mixed
     return $result->fetch();
 }
 
+function updateViews($pdo, int $articleId): mixed
+{
+    $result = $pdo->prepare("UPDATE articles SET view = view + 1 WHERE id =?");
+    $result->execute([$articleId]);
+    return $result->fetch();
+}
+
 function getAdminArticles($pdo): mixed
 {
     $result = $pdo->prepare("SELECT * FROM articles ");

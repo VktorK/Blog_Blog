@@ -17,13 +17,14 @@
         <a href="/Blog">Back</a>
     </div>
 <?php endif; ?>
-<?php if(isset($user) && ($article['user_id'] === $userId) || $isAdmin): ?>
+<?php if(isset($user) && ($article['userId'] === $userId) || $isAdmin): ?>
 <div>
     <a href="/Blog/?act=articleUserEdit&id=<?= $article['id']?>">Edit</a>
 </div>
 <?php endif ?>
 <div class="bg-gray-100 flex h-screen items-center justify-center px-4 sm:px-6 lg:px-8">
     <h3><?= $article['title'] . PHP_EOL ?></h3>
+    <p>Количество просмотров : <?= $article['view'] . PHP_EOL ?></p>
     <div><p><?= $article['content'] ?></p></div>
     <div><img src="/Blog/images/<?=$article['img']?>" alt="some picher"/></div>
 </div>
